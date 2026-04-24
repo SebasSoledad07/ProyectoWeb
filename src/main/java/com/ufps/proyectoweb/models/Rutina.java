@@ -1,7 +1,15 @@
-package com.ufps.proyectoweb.Entity;
-
+package com.ufps.proyectoweb.models;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Rutina {
 
     private int id;

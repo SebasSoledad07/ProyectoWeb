@@ -1,7 +1,15 @@
-package com.ufps.proyectoweb.Entity;
+package com.ufps.proyectoweb.models;
 
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class MedidaCorporal {
     private int id;
     private Usuario cliente;
