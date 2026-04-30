@@ -9,11 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DetalleRutina {
+public class Exercise {
 
     private int id;
-    private Ejercicio ejercicio;
-    private String repeticiones;
-    private Double pesoSugerido;
-    private String series;
+    private String name;
+    private String muscleGroup;
 }
+
+

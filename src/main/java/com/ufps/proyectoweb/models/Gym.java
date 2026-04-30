@@ -9,9 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Gimnasio {
+public class Gym {
     private int id;
-    private String nombre;
-    private String direccion;
-    private Reserva reserva;
+    private String name;
+    private String address;
+    private Reservation reservation;
 }
+
