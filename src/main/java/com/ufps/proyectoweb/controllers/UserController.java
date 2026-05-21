@@ -2,8 +2,6 @@ package com.ufps.proyectoweb.controllers;
 
 import com.ufps.proyectoweb.dto.user.HealthQuestionnaireRequest;
 import com.ufps.proyectoweb.dto.user.HealthQuestionnaireResponse;
-import com.ufps.proyectoweb.dto.user.LoginRequest;
-import com.ufps.proyectoweb.dto.user.RegisterUserRequest;
 import com.ufps.proyectoweb.dto.user.UpdateUserRequest;
 import com.ufps.proyectoweb.dto.user.UserResponse;
 import com.ufps.proyectoweb.services.UserService;
@@ -13,6 +11,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 /**
- * REST controller for the user module.
+ * REST controller for user profile and health data management.
  */
 @RestController
 @RequestMapping("/api/v1/users")
@@ -43,28 +41,6 @@ public class UserController {
      */
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    /**
-     * Registers a new user.
-     *
-     * @param request registration data
-     * @return created user response
-     */
-    @PostMapping("/register")
-    public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterUserRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.register(request));
-    }
-
-    /**
-     * Authenticates a user.
-     *
-     * @param request login data
-     * @return authenticated user response
-     */
-    @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(userService.authenticate(request));
     }
 
     /**
@@ -117,7 +93,7 @@ public class UserController {
      * Checks if an email is already registered.
      *
      * @param email email to check
-     * @return true when the email is already in use
+     * @return email existence status
      */
     @GetMapping("/exists")
     public ResponseEntity<Boolean> emailExists(@RequestParam @Email @NotBlank String email) {
@@ -133,7 +109,7 @@ public class UserController {
      */
     @PostMapping("/{id}/questionnaires")
     public ResponseEntity<HealthQuestionnaireResponse> addQuestionnaire(@PathVariable @Positive Long id,
-                                                                        @Valid @RequestBody HealthQuestionnaireRequest request) {
+                                                                         @Valid @RequestBody HealthQuestionnaireRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.addHealthQuestionnaire(id, request));
     }
 
