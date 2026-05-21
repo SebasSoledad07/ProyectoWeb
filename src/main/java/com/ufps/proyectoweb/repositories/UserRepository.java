@@ -1,6 +1,6 @@
 package com.ufps.proyectoweb.repositories;
 
-import com.ufps.proyectoweb.models.User;
+import com.ufps.proyectoweb.entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -4,8 +4,8 @@ import com.ufps.proyectoweb.services.UserService;
 import com.ufps.proyectoweb.enums.Gender;
 import com.ufps.proyectoweb.enums.Role;
 import com.ufps.proyectoweb.enums.WeekDay;
-import com.ufps.proyectoweb.models.IntakeQuestionnaire;
-import com.ufps.proyectoweb.models.User;
+import com.ufps.proyectoweb.entity.IntakeQuestionnaire;
+import com.ufps.proyectoweb.entity.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,6 +18,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -83,9 +84,9 @@ public class UserController extends HttpServlet {
 			return;
 		}
 
-		userService.register(user);
+		User savedUser = userService.register(user);
 		HttpSession session = req.getSession(true);
-		session.setAttribute("currentUser", user);
+		session.setAttribute("currentUser", savedUser);
 		sendFlash(session, "success", "Registro exitoso. Completa tu formulario de salud.");
 		resp.sendRedirect(req.getContextPath() + "/users/health");
 	}
@@ -122,7 +123,7 @@ public class UserController extends HttpServlet {
 			return;
 		}
 
-		IntakeQuestionnaire questionnaire = buildQuestionnaireFromRequest(req);
+		IntakeQuestionnaire questionnaire = buildQuestionnaireFromRequest(req, currentUser);
 		if (isMissingHealthData(questionnaire)) {
 			sendFlash(req.getSession(), "error", "Completa todos los campos del formulario de salud.");
 			resp.sendRedirect(req.getContextPath() + "/users/health");
@@ -215,27 +216,34 @@ public class UserController extends HttpServlet {
 	}
 
 	private User buildUserFromRequest(HttpServletRequest req) {
-		User user = new User();
-		user.setFirstName(safeParam(req, "firstName"));
-		user.setLastName(safeParam(req, "lastName"));
-		user.setEmail(safeParam(req, "email"));
-		user.setPassword(safeParam(req, "password"));
-		user.setPhoneNumber(safeParam(req, "phoneNumber"));
-		user.setGender(parseGender(req.getParameter("gender")));
-		user.setBirthDate(parseDate(req.getParameter("birthDate")));
-		user.setRole(parseRole(req.getParameter("role")));
-		return user;
+		return new User(
+				null,
+				safeParam(req, "firstName"),
+				safeParam(req, "lastName"),
+				safeParam(req, "email"),
+				safeParam(req, "password"),
+				safeParam(req, "phoneNumber"),
+				parseGender(req.getParameter("gender")),
+				parseDate(req.getParameter("birthDate")),
+				parseRole(req.getParameter("role")),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>()
+		);
 	}
 
-	private IntakeQuestionnaire buildQuestionnaireFromRequest(HttpServletRequest req) {
-		IntakeQuestionnaire questionnaire = new IntakeQuestionnaire();
-		questionnaire.setIntakeDate(parseDate(req.getParameter("intakeDate")));
-		questionnaire.setPreviousInjuries(safeParam(req, "previousInjuries"));
-		questionnaire.setIllnesses(safeParam(req, "illnesses"));
-		questionnaire.setPhysicalActivityLevel(safeParam(req, "physicalActivityLevel"));
-		questionnaire.setGoal(safeParam(req, "goal"));
-		questionnaire.setAvailableDays(parseWeekDay(req.getParameter("availableDays")));
-		return questionnaire;
+	private IntakeQuestionnaire buildQuestionnaireFromRequest(HttpServletRequest req, User client) {
+		return new IntakeQuestionnaire(
+				null,
+				client,
+				parseDate(req.getParameter("intakeDate")),
+				safeParam(req, "previousInjuries"),
+				safeParam(req, "illnesses"),
+				safeParam(req, "physicalActivityLevel"),
+				safeParam(req, "goal"),
+				parseWeekDay(req.getParameter("availableDays"))
+		);
 	}
 
 	private String pageHeader(HttpServletRequest req, String title) {

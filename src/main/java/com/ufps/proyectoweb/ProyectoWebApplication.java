@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class ProjectoWebApplication {
+public class ProyectoWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProjectoWebApplication.class, args);
+        SpringApplication.run(ProyectoWebApplication.class, args);
     }
 
 }

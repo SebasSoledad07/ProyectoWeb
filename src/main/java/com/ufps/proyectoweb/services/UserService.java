@@ -1,11 +1,11 @@
 package com.ufps.proyectoweb.services;
 
+import com.ufps.proyectoweb.entity.BodyMeasurement;
+import com.ufps.proyectoweb.entity.IntakeQuestionnaire;
+import com.ufps.proyectoweb.entity.Reservation;
+import com.ufps.proyectoweb.entity.Routine;
+import com.ufps.proyectoweb.entity.User;
 import com.ufps.proyectoweb.enums.Role;
-import com.ufps.proyectoweb.models.BodyMeasurement;
-import com.ufps.proyectoweb.models.IntakeQuestionnaire;
-import com.ufps.proyectoweb.models.Reservation;
-import com.ufps.proyectoweb.models.Routine;
-import com.ufps.proyectoweb.models.User;
 import com.ufps.proyectoweb.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
