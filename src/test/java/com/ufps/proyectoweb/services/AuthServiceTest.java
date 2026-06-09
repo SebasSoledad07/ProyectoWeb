@@ -1,8 +1,8 @@
 package com.ufps.proyectoweb.services;
 
-import com.ufps.proyectoweb.dto.user.LoginRequest;
-import com.ufps.proyectoweb.dto.user.RegisterUserRequest;
-import com.ufps.proyectoweb.dto.user.UserResponse;
+import com.ufps.proyectoweb.dto.LoginRequest;
+import com.ufps.proyectoweb.dto.RegisterUserRequest;
+import com.ufps.proyectoweb.dto.UserResponse;
 import com.ufps.proyectoweb.enums.Gender;
 import com.ufps.proyectoweb.enums.Role;
 import org.junit.jupiter.api.BeforeEach;

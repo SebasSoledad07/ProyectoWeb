@@ -1,4 +1,4 @@
-package com.ufps.proyectoweb.dto.user;
+package com.ufps.proyectoweb.dto;
 
 import com.ufps.proyectoweb.enums.Role;
 import jakarta.validation.constraints.Email;

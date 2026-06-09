@@ -1,9 +1,9 @@
 package com.ufps.proyectoweb.controllers;
 
-import com.ufps.proyectoweb.dto.user.HealthQuestionnaireRequest;
-import com.ufps.proyectoweb.dto.user.HealthQuestionnaireResponse;
-import com.ufps.proyectoweb.dto.user.UpdateUserRequest;
-import com.ufps.proyectoweb.dto.user.UserResponse;
+import com.ufps.proyectoweb.dto.HealthQuestionnaireRequest;
+import com.ufps.proyectoweb.dto.HealthQuestionnaireResponse;
+import com.ufps.proyectoweb.dto.UpdateUserRequest;
+import com.ufps.proyectoweb.dto.UserResponse;
 import com.ufps.proyectoweb.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;

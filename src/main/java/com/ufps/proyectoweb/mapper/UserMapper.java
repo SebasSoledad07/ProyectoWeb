@@ -1,11 +1,10 @@
 package com.ufps.proyectoweb.mapper;
 
-import com.ufps.proyectoweb.dto.user.HealthQuestionnaireRequest;
-import com.ufps.proyectoweb.dto.user.HealthQuestionnaireResponse;
-import com.ufps.proyectoweb.dto.user.RegisterUserRequest;
-import com.ufps.proyectoweb.dto.user.UpdateUserRequest;
-import com.ufps.proyectoweb.dto.user.UserResponse;
-import com.ufps.proyectoweb.entity.BodyMeasurement;
+import com.ufps.proyectoweb.dto.HealthQuestionnaireRequest;
+import com.ufps.proyectoweb.dto.HealthQuestionnaireResponse;
+import com.ufps.proyectoweb.dto.RegisterUserRequest;
+import com.ufps.proyectoweb.dto.UpdateUserRequest;
+import com.ufps.proyectoweb.dto.UserResponse;
 import com.ufps.proyectoweb.entity.IntakeQuestionnaire;
 import com.ufps.proyectoweb.entity.User;
 import org.springframework.stereotype.Component;

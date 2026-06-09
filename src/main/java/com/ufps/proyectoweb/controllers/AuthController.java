@@ -1,8 +1,8 @@
 package com.ufps.proyectoweb.controllers;
 
-import com.ufps.proyectoweb.dto.user.LoginRequest;
-import com.ufps.proyectoweb.dto.user.RegisterUserRequest;
-import com.ufps.proyectoweb.dto.user.UserResponse;
+import com.ufps.proyectoweb.dto.LoginRequest;
+import com.ufps.proyectoweb.dto.RegisterUserRequest;
+import com.ufps.proyectoweb.dto.UserResponse;
 import com.ufps.proyectoweb.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
